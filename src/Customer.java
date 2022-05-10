@@ -3,17 +3,20 @@ import java.lang.*;
 import java.util.*;
 
 class Customer {
-    private String name;
-    private Vector rentals = new Vector();
+    private final String name;
+    private final Vector rentals = new Vector();
     public Customer (String name){
         this.name = name;
-    };
+    }
+
     public void addRental(Rental rental) {
         rentals.addElement(rental);
-    };
+    }
+
     public String getName (){
         return name;
-    };
+    }
+
     public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
@@ -22,7 +25,7 @@ class Customer {
         result.append("\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n");
 
         while (enum_rentals.hasMoreElements()) {
-            double thisAmount = 0;
+            double thisAmount;
             Rental each = (Rental) enum_rentals.nextElement();
             //determine amounts for each line
             thisAmount = amountFor(each);
@@ -32,12 +35,12 @@ class Customer {
             if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDaysRented() > 1) 
                 frequentRenterPoints ++;
             //show figures for this rental
-            result.append("\t").append(each.getMovie().getTitle()).append("\t").append("\t").append(each.getDaysRented()).append("\t").append(String.valueOf(thisAmount)).append("\n");
+            result.append("\t").append(each.getMovie().getTitle()).append("\t").append("\t").append(each.getDaysRented()).append("\t").append(thisAmount).append("\n");
             totalAmount += thisAmount;
         }
         //add footer lines
-        result.append("Amount owed is ").append(String.valueOf(totalAmount)).append("\n");
-        result.append("You earned ").append(String.valueOf(frequentRenterPoints)).append(" frequent renter points");
+        result.append("Amount owed is ").append(totalAmount).append("\n");
+        result.append("You earned ").append(frequentRenterPoints).append(" frequent renter points");
         return result.toString();
     }
 
