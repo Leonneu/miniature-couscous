@@ -5,11 +5,11 @@ import java.util.*;
 class Customer {
     private String name;
     private Vector rentals = new Vector();
-    public Customer (String newname){
-        name = newname;
+    public Customer (String name){
+        name = name;
     };
-    public void addRental(Rental arg) {
-        rentals.addElement(arg);
+    public void addRental(Rental rental) {
+        rentals.addElement(rental);
     };
     public String getName (){
         return name;
@@ -52,7 +52,7 @@ class Customer {
             case Movie.NEW_RELEASE:
                 thisAmount += each.getDaysRented() * 3;
                 break;
-            case Movie.CHILDRENS:
+            case Movie.CHILDREN:
                 thisAmount += 1.5;
                 if (each.getDaysRented() > 3)
                     thisAmount += (each.getDaysRented() - 3) * 1.5;
