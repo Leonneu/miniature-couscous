@@ -6,7 +6,7 @@ class Customer {
     private String name;
     private Vector rentals = new Vector();
     public Customer (String name){
-        name = name;
+        this.name = name;
     };
     public void addRental(Rental rental) {
         rentals.addElement(rental);
